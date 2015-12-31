@@ -1,0 +1,27 @@
+{
+  "name": "bundle-rocket-sdk",
+  "version": "0.0.1",
+  "description": "Bundle Rocket SDK",
+  "main": "BundleRocket.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bundle-rocket/bundle-rocket-sdk.git"
+  },
+  "keywords": [
+    "react-native",
+    "bundle"
+  ],
+  "author": "cxtom <cxtom2010@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bundle-rocket/bundle-rocket-sdk/issues"
+  },
+  "homepage": "https://github.com/bundle-rocket/bundle-rocket-sdk#readme",
+  "dependencies": {
+    "react-native": "^0.17.0",
+    "semver": "^5.1.0"
+  }
+}
