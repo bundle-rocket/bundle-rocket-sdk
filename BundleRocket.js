@@ -4,10 +4,6 @@
  */
 
 import {
-    AcquisitionManager as Sdk
-} from 'code-push/script/acquisition-sdk';
-
-import {
     Alert
 } from 'react-native';
 import requestFetchAdapter from './request-fetch-adapter';
@@ -312,7 +308,6 @@ async function sync(options = {}, syncStatusChangeCallback, downloadProgressCall
 }
 
 BundleRocket = {
-    AcquisitionSdk: Sdk,
     checkForUpdate,
     getConfiguration,
     getCurrentPackage,
