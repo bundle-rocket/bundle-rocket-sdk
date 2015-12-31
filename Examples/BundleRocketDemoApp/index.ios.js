@@ -10,7 +10,7 @@ const {
     Text,
     View
 } = React;
-const BundleRocket = require('bundle-rocket');
+const BundleRocket = require('bundle-rocket-sdk');
 
 const styles = StyleSheet.create({
     container: {

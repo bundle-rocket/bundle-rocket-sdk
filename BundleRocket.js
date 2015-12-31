@@ -9,6 +9,8 @@ import {
 import requestFetchAdapter from './request-fetch-adapter';
 import semver from 'semver';
 
+import {AcquisitionManager as Sdk} from './Acquisition';
+
 let NativeBundleRocket = require('react-native').NativeModules.BundleRocket;
 const PackageMixins = require('./package-mixins')(NativeBundleRocket);
 
@@ -308,6 +310,7 @@ async function sync(options = {}, syncStatusChangeCallback, downloadProgressCall
 }
 
 BundleRocket = {
+    AcquisitionSdk: Sdk,
     checkForUpdate,
     getConfiguration,
     getCurrentPackage,

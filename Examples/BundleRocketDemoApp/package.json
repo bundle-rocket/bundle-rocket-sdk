@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "sh node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.17.0",
-    "bundle-rocket": "file:../../"
+    "bundle-rocket-sdk": "0.0.2",
+    "react-native": "^0.17.0"
   }
 }
