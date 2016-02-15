@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3507D6CA1C717FB50073F5A0 /* BRTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3507D6C91C717FB50073F5A0 /* BRTracer.m */; };
+		3507D6CD1C71AA700073F5A0 /* RCTConvert+BRInstallMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3507D6CC1C71AA700073F5A0 /* RCTConvert+BRInstallMode.m */; };
+		352F88C21C61C77B007019E4 /* NSFileManager+Tar.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F88C11C61C77B007019E4 /* NSFileManager+Tar.m */; };
+		352F88C51C61D424007019E4 /* BRApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 352F88C41C61D424007019E4 /* BRApp.m */; };
 		35E388261C6074430046988F /* BundleRocket.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35E388251C6074430046988F /* BundleRocket.h */; };
 		35E388281C6074430046988F /* BundleRocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E388271C6074430046988F /* BundleRocket.m */; };
 		35E388621C6078EE0046988F /* BRDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E388611C6078EE0046988F /* BRDownloader.m */; };
 		35E3887B1C609C950046988F /* BRUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E3887A1C609C950046988F /* BRUtil.m */; };
 		35E388941C60F03B0046988F /* BRMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E388931C60F03B0046988F /* BRMD5.m */; };
+		35E3889E1C61A6EB0046988F /* NSData+GZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E3889D1C61A6EB0046988F /* NSData+GZIP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +33,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3507D6C81C717FB50073F5A0 /* BRTracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTracer.h; sourceTree = "<group>"; };
+		3507D6C91C717FB50073F5A0 /* BRTracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRTracer.m; sourceTree = "<group>"; };
+		3507D6CB1C71AA700073F5A0 /* RCTConvert+BRInstallMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+BRInstallMode.h"; sourceTree = "<group>"; };
+		3507D6CC1C71AA700073F5A0 /* RCTConvert+BRInstallMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+BRInstallMode.m"; sourceTree = "<group>"; };
+		352F88C01C61C77B007019E4 /* NSFileManager+Tar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Tar.h"; sourceTree = "<group>"; };
+		352F88C11C61C77B007019E4 /* NSFileManager+Tar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Tar.m"; sourceTree = "<group>"; };
+		352F88C31C61D424007019E4 /* BRApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRApp.h; sourceTree = "<group>"; };
+		352F88C41C61D424007019E4 /* BRApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRApp.m; sourceTree = "<group>"; };
 		35E388221C6074430046988F /* libBundleRocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBundleRocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E388251C6074430046988F /* BundleRocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BundleRocket.h; sourceTree = "<group>"; };
 		35E388271C6074430046988F /* BundleRocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BundleRocket.m; sourceTree = "<group>"; };
@@ -37,6 +50,8 @@
 		35E3887A1C609C950046988F /* BRUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRUtil.m; sourceTree = "<group>"; };
 		35E388921C60F03B0046988F /* BRMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRMD5.h; sourceTree = "<group>"; };
 		35E388931C60F03B0046988F /* BRMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRMD5.m; sourceTree = "<group>"; };
+		35E3889C1C61A6EB0046988F /* NSData+GZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GZIP.h"; sourceTree = "<group>"; };
+		35E3889D1C61A6EB0046988F /* NSData+GZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GZIP.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +92,16 @@
 				35E3887A1C609C950046988F /* BRUtil.m */,
 				35E388921C60F03B0046988F /* BRMD5.h */,
 				35E388931C60F03B0046988F /* BRMD5.m */,
+				35E3889C1C61A6EB0046988F /* NSData+GZIP.h */,
+				35E3889D1C61A6EB0046988F /* NSData+GZIP.m */,
+				352F88C01C61C77B007019E4 /* NSFileManager+Tar.h */,
+				352F88C11C61C77B007019E4 /* NSFileManager+Tar.m */,
+				352F88C31C61D424007019E4 /* BRApp.h */,
+				352F88C41C61D424007019E4 /* BRApp.m */,
+				3507D6C81C717FB50073F5A0 /* BRTracer.h */,
+				3507D6C91C717FB50073F5A0 /* BRTracer.m */,
+				3507D6CB1C71AA700073F5A0 /* RCTConvert+BRInstallMode.h */,
+				3507D6CC1C71AA700073F5A0 /* RCTConvert+BRInstallMode.m */,
 			);
 			path = BundleRocket;
 			sourceTree = "<group>";
@@ -138,9 +163,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352F88C21C61C77B007019E4 /* NSFileManager+Tar.m in Sources */,
 				35E388941C60F03B0046988F /* BRMD5.m in Sources */,
+				3507D6CA1C717FB50073F5A0 /* BRTracer.m in Sources */,
 				35E388621C6078EE0046988F /* BRDownloader.m in Sources */,
+				3507D6CD1C71AA700073F5A0 /* RCTConvert+BRInstallMode.m in Sources */,
+				35E3889E1C61A6EB0046988F /* NSData+GZIP.m in Sources */,
 				35E388281C6074430046988F /* BundleRocket.m in Sources */,
+				352F88C51C61D424007019E4 /* BRApp.m in Sources */,
 				35E3887B1C609C950046988F /* BRUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,7 +214,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -221,7 +251,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -232,7 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"$(inherates)",
+					"$(inherited)",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
 				OTHER_LDFLAGS = "-ObjC";
@@ -244,6 +274,10 @@
 		35E3882D1C6074430046988F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../react-native/React/**",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
