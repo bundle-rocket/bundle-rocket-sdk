@@ -15,11 +15,15 @@
 @property (copy) BRDownloaderProgressCallback progressCallback;
 
 @property BRDownloaderStage stage;
-@property NSOutputStream *outputStream;
-@property (retain) NSURLSession *session;
-@property (retain) NSString *toFilePath;
-@property (retain) BRMD5* md5;
+
+@property (retain) NSOutputStream* outputStream;
+@property (retain) NSURLSession* session;
+
+@property (copy) NSString* toFolderPath;
+@property (copy) NSString* deploymentKey;
 @property (copy) NSString* shasum;
+
+@property (retain) BRMD5* md5;
 
 @property long long totalBytesExpected;
 @property long long totalBytesWritten;
@@ -43,14 +47,16 @@ progressCallback:(BRDownloaderProgressCallback)progessCallback {
 }
 
 - (void)download:(NSString *)bundleURL
-  outputFilePath:(NSString *)outputFilePath
-          shasum:(NSString *)shasum {
+outputFolderPath:(NSString *)outputFolderPath
+          shasum:(NSString *)shasum
+   deploymentKey:(NSString *)deploymentKey {
     
-    NSLog(@"download from %@ to %@", bundleURL, outputFilePath);
+    NSLog(@"download from %@ to %@", bundleURL, outputFolderPath);
     
     self.stage = BRDownloaderStageStart;
-    self.toFilePath = outputFilePath;
+    self.toFolderPath = outputFolderPath;
     self.shasum = shasum;
+    self.deploymentKey = deploymentKey;
     
     // 生成 session 的 configuration
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -101,7 +107,28 @@ didReceiveResponse:(NSURLResponse *)response
     self.stage = BRDownloaderStagePending;
     self.totalBytesExpected = httpURLResponse.expectedContentLength;
     self.md5 = [[BRMD5 alloc] init];
-    self.outputStream = [NSOutputStream outputStreamToFileAtPath:self.toFilePath append:NO];
+    
+    NSError* error = nil;
+    NSString* toFilePath = self.toFolderPath;
+    
+    NSFileManager* manager = [NSFileManager defaultManager];
+    
+    if (![manager createDirectoryAtPath:toFilePath
+            withIntermediateDirectories:YES
+                             attributes:nil
+                                  error:&error]) {
+        
+        completionHandler(NSURLSessionResponseCancel);
+        self.failCallback(error);
+        return;
+        
+    }
+
+    
+    NSString* tmpBundleFilePath = [self.toFolderPath stringByAppendingPathComponent:@"bundle.tar.gz"];
+    
+    self.outputStream = [NSOutputStream outputStreamToFileAtPath:tmpBundleFilePath
+                                                          append:NO];
     
     [self.outputStream open];
     
@@ -151,24 +178,72 @@ didReceiveResponse:(NSURLResponse *)response
                 task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
     
+    NSLog(@"download complete");
+    
+    // 如果在接收数据过程出现了问题，那么就直接返回错误
     if (error) {
+        
+        NSLog(@"%@", error);
+        
         [self.outputStream close];
         self.failCallback(error);
         return;
     }
     
+    // 计算下载到的 bundle 的 md5 值
     NSString *md5 = [self.md5 digest];
     
-    NSLog(@"bundle file md5[%@] vs expected md5[%@]", md5, self.shasum);
+    NSLog(@"bundle md: %@, expected md5: %@", md5, self.shasum);
     
+    // 如果 md5 值不匹配，返回 md5 匹配错误
     if (![md5 isEqualToString:self.shasum]) {
-        self.failCallback([[NSError alloc] initWithDomain:@"BundleRocket"
+        self.failCallback([[NSError alloc] initWithDomain:@"BRErrorDomain"
                                                      code:409
                                                  userInfo:@{NSLocalizedDescriptionKey: @"shasum mismatch"}]);
         return;
     }
     
-    self.doneCallback(@{@"totalBytesExpected": [NSNumber numberWithInteger:self.totalBytesExpected]});
+    // 解压 gzip
+    NSString* toFolderPath = self.toFolderPath;
+    NSString* tmpBundleFilePath = [toFolderPath stringByAppendingPathComponent:@"bundle.tar.gz"];
+    
+    NSFileManager* mananger = [NSFileManager defaultManager];
+    
+    NSData* bundleData = [mananger contentsAtPath:tmpBundleFilePath];
+    
+    if (![bundleData isGzippedData]) {
+        self.failCallback([[NSError alloc]initWithDomain:@"BundleRocket"
+                                                    code:500
+                                                userInfo:@{NSLocalizedDescriptionKey:@"invalid bundle format; expect`tar.gz` format."}]) ;
+        return;
+    }
+    
+    // 解压 tar
+    NSError* untarError;
+    
+    if (![mananger createFilesAndDirectoriesAtPath:toFolderPath
+                                  withTarData:[bundleData gunzippedData]
+                                        error:&untarError
+                                     progress:^(float percent) {
+                                         NSLog(@"untar progress: %f", percent);
+                                     }]) {
+                                         self.failCallback(untarError);
+                                         return;
+    };
+    
+   
+    // 关闭临时文件输出流
+    [self.outputStream close];
+    
+    // 尝试移除临时 bundle.tar.gz，不成功也没关系
+    [mananger removeItemAtPath:tmpBundleFilePath error:nil];
+    
+    NSLog(@"bundle.tar.gz decompressed");
+    
+    // 成功
+    self.doneCallback(@{
+        @"totalBytes": [NSNumber numberWithInteger:self.totalBytesExpected],
+        @"location": toFolderPath});
 }
 
 @end

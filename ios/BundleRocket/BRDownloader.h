@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "BRMD5.h"
+#import "NSData+GZIP.h"
+#import "NSFileManager+Tar.h"
 
 typedef void (^BRDownloaderDoneCallback)(NSDictionary *);
 typedef void (^BRDownloaderFailCallback)(NSError *);
@@ -27,9 +29,11 @@ typedef NS_OPTIONS(NSUInteger, BRDownloaderStage) {
     failCallback:(BRDownloaderFailCallback)failCallback
 progressCallback:(BRDownloaderProgressCallback)progessCallback;
 
-- (void) download:(NSString *)bundleURL
-   outputFilePath:(NSString *)outputFilePath
-           shasum:(NSString *)shasum;
+- (void) download:(NSString*)bundleURL
+ outputFolderPath:(NSString*)outputFolderPath
+           shasum:(NSString*)shasum
+    deploymentKey:(NSString*)deploymentKey;
+
 - (void) stop;
 
 @end
