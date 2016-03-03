@@ -17,21 +17,6 @@
 
 RCT_EXPORT_MODULE(BundleRocket);
 
-//+ (void)initialize {
-//
-//    NSLog(@"global initialize");
-//    
-//    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
-//    
-//    [center addObserverForName:RCTJavaScriptDidLoadNotification
-//                        object:nil
-//                         queue:[NSOperationQueue mainQueue]
-//                    usingBlock:^(NSNotification* notice) {
-//                        NSLog(@"%@", notice);
-//                    }];
-//
-//}
-
 + (NSURL*)getBundleURL {
     return [self getBundleURL:@"main" extname:@"jsbundle"];
 }

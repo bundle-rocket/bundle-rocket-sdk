@@ -20,10 +20,12 @@ const {rootFolderPath} = BundleRocket;
 
 /**
  * 获取应用状态
+ *
+ * @param {...*} args 任意参数
  * @return {Object}
  */
-export async function getAppStatusInfo() {
-    return BundleRocket.getAppStatusInfo(...arguments);
+export async function getAppStatusInfo(...args) {
+    return BundleRocket.getAppStatusInfo(...args);
 }
 
 /**
@@ -32,8 +34,6 @@ export async function getAppStatusInfo() {
  * @return {Object}
  */
 export async function checkForUpdate() {
-
-    console.log('checking for update...');
 
     // 获取本地的应用状态
     const {
@@ -66,14 +66,7 @@ export async function checkForUpdate() {
     const errorBundles = await BundleRocket.getErrorBundles();
 
     // 这里做错误版本检测，如果一个更新包在本地被标识为错误版本，那么我们将它过滤掉
-    if (bundle && errorBundles && errorBundles.indexOf(version) !== -1) {
-        console.log(`we get a update ${version} which is marked as error so it's ignored`);
-        return null;
-    }
-
-    console.log(`checking for update succeed.`);
-
-    return bundle;
+    return bundle && errorBundles && errorBundles.indexOf(version) !== -1 ? null : bundle;
 
 }
 
@@ -171,7 +164,6 @@ export async function install(bundle, installMode = InstallMode.ON_NEXT_RESUME) 
 }
 
 export async function notifyApplicationReady() {
-    console.log(`bundle-rocket: javascript is ready.`);
     await BundleRocket.notifyApplicationReady();
 }
 
